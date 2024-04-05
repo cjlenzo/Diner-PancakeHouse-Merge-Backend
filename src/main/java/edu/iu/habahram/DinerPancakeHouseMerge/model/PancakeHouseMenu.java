@@ -52,8 +52,10 @@ public class PancakeHouseMenu implements Menu {
         return  stringBuilder.toString();
     }
 
-    // other menu methods here
     public Iterator<MenuItem> createIterator() {
-        return new PancakeHouseIterator(menuItems);
+
+        return menuItems.iterator();
     }
+
+    // other menu methods here
 }

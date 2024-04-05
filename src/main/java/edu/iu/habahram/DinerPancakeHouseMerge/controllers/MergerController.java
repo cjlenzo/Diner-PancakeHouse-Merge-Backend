@@ -8,11 +8,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 @RestController
 @CrossOrigin
+@RequestMapping("/merger")
 public class MergerController {
 
     DinerRepository dinerRepository;
@@ -23,14 +25,18 @@ public class MergerController {
         this.pancakeHouseRepository = pancakeHouseRepository;
     }
 
-    @GetMapping("/merger")
-    public List<MenuItem> getAll() {
-        List<MenuItem> allMenuItems = new ArrayList<>();
-        allMenuItems.addAll(List.of(dinerRepository.getTheMenu()));
-        allMenuItems.addAll(pancakeHouseRepository.getTheMenu());
+    @GetMapping
+    public List<MenuItem> get() {
+        List<MenuItem> menuItems = new ArrayList<>();
+        Iterator<MenuItem> lunchItems = dinerRepository.getTheMenuIterator();
+        while(lunchItems.hasNext()) {
+            menuItems.add(lunchItems.next());
+        }
 
-        Collections.sort(allMenuItems, (item1, item2) -> item1.getName().compareTo(item2.getName()));
-
-        return allMenuItems;
+        Iterator<MenuItem> breakfastItems = pancakeHouseRepository.getTheMenuIterator();
+        while(breakfastItems.hasNext()) {
+            menuItems.add(breakfastItems.next());
+        }
+        return menuItems;
     }
 }
