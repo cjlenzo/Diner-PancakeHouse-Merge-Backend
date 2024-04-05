@@ -1,5 +1,6 @@
 package edu.iu.habahram.DinerPancakeHouseMerge.repository;
 
+import edu.iu.habahram.DinerPancakeHouseMerge.model.CafeMenu;
 import edu.iu.habahram.DinerPancakeHouseMerge.model.Menu;
 import edu.iu.habahram.DinerPancakeHouseMerge.model.MenuItem;
 import edu.iu.habahram.DinerPancakeHouseMerge.model.PancakeHouseMenu;
@@ -7,15 +8,17 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 @Repository
-public class PancakeHouseRepository {
-    public List<MenuItem> getTheMenu() {
-        PancakeHouseMenu pancakeHouseMenu = new PancakeHouseMenu();
-        return pancakeHouseMenu.getMenuItems();
+public class CafeRepository {
+
+    public Map<String, MenuItem> getTheMenu() {
+        CafeMenu cafeMenu = new CafeMenu();
+        return cafeMenu.getItems();
     }
     public Iterator<MenuItem> getTheMenuIterator() {
-        Menu pancakeHouseMenu = new PancakeHouseMenu();
-        return pancakeHouseMenu.createIterator();
+        CafeMenu cafeMenu = new CafeMenu();
+        return cafeMenu.createIterator();
     }
 }
