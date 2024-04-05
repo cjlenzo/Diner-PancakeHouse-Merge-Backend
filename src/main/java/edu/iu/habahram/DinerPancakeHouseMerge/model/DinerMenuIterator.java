@@ -3,19 +3,19 @@ package edu.iu.habahram.DinerPancakeHouseMerge.model;
 import java.util.Iterator;
 import java.util.List;
 
-public class PancakeHouseIterator implements Iterator {
+public class DinerMenuIterator implements Iterator {
 
-    List<MenuItem> list;
+    MenuItem[] list;
     int currentIndex;
 
-    public PancakeHouseIterator(List<MenuItem> list) {
+    public DinerMenuIterator(MenuItem[] list) {
         this.list = list;
         this.currentIndex = 0;
     }
 
     @Override
     public boolean hasNext() {
-        if (currentIndex >= list.size() || list.get(currentIndex) == null) {
+        if (currentIndex >= list.length || list[currentIndex] == null) {
             return false;
         }
         else {
@@ -25,10 +25,10 @@ public class PancakeHouseIterator implements Iterator {
 
     @Override
     public MenuItem next() {
-        if (!hasNext()) {
+        if(!hasNext()) {
             throw new IndexOutOfBoundsException("No more elements in the iterator.");
         }
-        MenuItem menuItem = list.get(currentIndex);
+        MenuItem menuItem = list[currentIndex];
         currentIndex = currentIndex + 1;
         return menuItem;
     }
